@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tommy Carstensen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Tommy Carstensen</h1>
+      <p class="tagline">Bioinformatician · Data Scientist</p>
+      <a href="https://tommycarstensen.com">tommycarstensen.com</a>
+    </header>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="projects">
+
+        <article class="project">
+          <div class="project-header">
+            <h3><a href="https://github.com/tommycarstensen/plotpick">PlotPick</a></h3>
+            <a class="badge" href="https://plotpick.streamlit.app">live demo</a>
+          </div>
+          <p>
+            AI-powered extraction of numerical data from scientific figures.
+            Upload images, PDFs, or ZIPs; Claude Vision reads boxplots, bar
+            charts, and line plots and returns structured tables.
+            Benchmarked against ChartX and PlotQA across Claude, GPT, Gemini,
+            and DePlot baselines.
+          </p>
+          <div class="tags">
+            <span>Python</span>
+            <span>Claude Vision API</span>
+            <span>Streamlit</span>
+            <span>PyMuPDF</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-header">
+            <h3><a href="https://github.com/tommycarstensen/optimization">RAM &amp; CPU-Efficient Data Processing</a></h3>
+          </div>
+          <p>
+            Benchmark and slide deck comparing pandas, dask, polars, duckdb
+            (Python) and data.frame/dplyr, data.table, duckdb (R) on 50M-row
+            parquet data. Covers read, filter, groupby, join, window, and
+            Spearman. Includes incremental GLM and Cox PH for out-of-core
+            modelling.
+          </p>
+          <div class="tags">
+            <span>Python</span>
+            <span>R</span>
+            <span>polars</span>
+            <span>duckdb</span>
+            <span>dask</span>
+            <span>Quarto</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>
