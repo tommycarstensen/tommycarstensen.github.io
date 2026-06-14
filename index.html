@@ -20,6 +20,30 @@
 
         <article class="project">
           <div class="project-header">
+            <h3><a href="https://github.com/tommycarstensen/coxstream">coxstream</a></h3>
+            <a class="badge" href="https://pypi.org/project/coxstream/"><img src="https://img.shields.io/pypi/v/coxstream" alt="PyPI"></a>
+          </div>
+          <p>
+            Exact out-of-core Cox proportional hazards regression via streaming
+            Newton-Raphson. Fits the Cox model on cohorts larger than RAM by
+            streaming one time-sorted pass per Newton-Raphson iteration, holding
+            only <em>O(p&sup2;)</em> state &mdash; peak memory is flat in the
+            number of rows. Reproduces the in-memory MLE to machine precision and
+            carries the Efron tie correction across chunk boundaries; agrees with
+            <code>lifelines</code> and R <code>survival::coxph</code>.
+            Install: <code>pip install coxstream</code>.
+          </p>
+          <div class="tags">
+            <span>Python</span>
+            <span>NumPy</span>
+            <span>Cython</span>
+            <span>survival analysis</span>
+            <span>PyPI</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-header">
             <h3><a href="https://github.com/tommycarstensen/renew-glm">renew-glm</a></h3>
             <a class="badge" href="https://pypi.org/project/renew-glm/"><img src="https://img.shields.io/pypi/v/renew-glm" alt="PyPI"></a>
           </div>
