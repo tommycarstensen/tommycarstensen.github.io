@@ -3,120 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tommy Carstensen — streaming methods for large health data</title>
-<meta name="description" content="Bioinformatician and data scientist in Copenhagen. Streaming algorithms for health data that outgrew memory: exact Cox and GLM estimates at flat RAM, out-of-core data processing, upstream contributions to polars, bcftools, biopython and bokeh.">
+<title>Tommy Carstensen — human genetics and clinical machine learning</title>
+<meta name="description" content="Bioinformatician and data scientist in Copenhagen. Population-scale human genetics — African reference panels at the Wellcome Sanger Institute, UK Biobank health records, clinical machine learning on registry data — and the streaming methods that make exact estimates computable at that scale.">
 <meta name="theme-color" content="#901A1E">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Tommy Carstensen">
-<meta property="og:description" content="Streaming methods for health data that outgrew memory — exact estimates, flat RAM.">
+<meta property="og:description" content="Human genetics at population scale, and the methods that make it computable.">
 <meta property="og:url" content="https://tommycarstensen.github.io/">
 <meta property="og:image" content="https://tommycarstensen.github.io/slides/optimization-preview.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23FBFAF8'/><path d='M4 26 L26 24' stroke='%231A1614' stroke-width='2.6' stroke-linecap='round' fill='none'/><path d='M4 26 L13 26 L22 6' stroke='%23901A1E' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23FCFBF9'/><path d='M4 26 L26 24' stroke='%2316130F' stroke-width='2.6' stroke-linecap='round' fill='none'/><path d='M4 26 L13 26 L22 6' stroke='%23901A1E' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="band" aria-hidden="true"></div>
 
 <main>
 
   <header class="masthead">
     <h1>Tommy Carstensen</h1>
     <p class="role">Bioinformatician &middot; data scientist &middot; Copenhagen</p>
-    <p class="lede">I build streaming methods for health data that outgrew memory — <em>exact</em> estimates, flat RAM, on hardware you already have.</p>
+    <p class="lede">Human genetics at population scale, and the methods that make it computable — reference panels for African populations at the Wellcome Sanger Institute, deep learning on UK Biobank health records, and clinical machine learning on national registry data.</p>
     <nav class="links" aria-label="Elsewhere">
-      <a href="https://github.com/tommycarstensen">github.com/tommycarstensen</a>
+      <a href="https://scholar.google.com/citations?user=UA_ITtQAAAAJ">Google Scholar</a>
+      <a href="https://github.com/tommycarstensen">GitHub</a>
       <a href="https://tommycarstensen.com">tommycarstensen.com</a>
     </nav>
   </header>
 
-  <figure class="plot-figure">
-    <svg class="plot" viewBox="0 0 760 300" role="img" aria-labelledby="plot-title plot-desc">
-      <title id="plot-title">Peak memory when grouping 100 to 800 million rows</title>
-      <desc id="plot-desc">pandas needs 3.5 GB at 100 million rows and 13.5 GB at 400 million, then runs out of memory. polars streams the same query and stays at 0.29 to 0.40 GB all the way to 800 million rows.</desc>
-
-      <g class="grid">
-        <line x1="70" y1="240" x2="720" y2="240"></line>
-        <line x1="70" y1="165" x2="720" y2="165"></line>
-        <line x1="70" y1="90"  x2="720" y2="90"></line>
-      </g>
-
-      <g class="tick">
-        <text x="58" y="244" text-anchor="end">0</text>
-        <text x="58" y="169" text-anchor="end">5</text>
-        <text x="58" y="94"  text-anchor="end">10</text>
-        <text x="70"  y="264" text-anchor="middle">100</text>
-        <text x="163" y="264" text-anchor="middle">200</text>
-        <text x="349" y="264" text-anchor="middle">400</text>
-        <text x="720" y="264" text-anchor="middle">800</text>
-        <text x="395" y="290" text-anchor="middle" class="axis-title">rows, millions</text>
-        <text x="20" y="135" text-anchor="middle" class="axis-title" transform="rotate(-90 20 135)">peak RAM, GB</text>
-      </g>
-
-      <polyline class="line-stream" points="70,235.7 720,234"></polyline>
-      <polyline class="line-load"   points="70,187.5 163,138 349,37.5"></polyline>
-
-      <g class="dot-load">
-        <circle cx="70"  cy="187.5" r="3.5"></circle>
-        <circle cx="163" cy="138"   r="3.5"></circle>
-      </g>
-
-      <g class="dot-stream">
-        <circle cx="70"  cy="235.7" r="3"></circle>
-        <circle cx="720" cy="234"   r="3"></circle>
-      </g>
-
-      <g class="oom">
-        <line x1="341" y1="29.5" x2="357" y2="45.5"></line>
-        <line x1="357" y1="29.5" x2="341" y2="45.5"></line>
-      </g>
-
-      <g class="annot">
-        <text x="372" y="34" class="annot-load">pandas</text>
-        <text x="372" y="52" class="annot-sub annot-wide">loads the whole table — out of memory past 400 M</text>
-        <text x="372" y="56" class="annot-sub annot-narrow">out of memory past 400 M</text>
-        <text x="716" y="220" text-anchor="end" class="annot-stream">polars — streams, 0.40 GB at 800 M</text>
-      </g>
-    </svg>
-    <figcaption>Grouping one measure across 100 groups, cold cache. Same query, same machine, same file: the difference is whether the engine holds the table or streams it. <a href="slides/optimization.html">Full benchmark deck &rarr;</a></figcaption>
-  </figure>
-
-  <ul class="facts">
-    <li><span class="fact-n">800 M</span><span class="fact-t">rows grouped in 0.40 GB of peak RAM</span></li>
-    <li><span class="fact-n">1e&#8209;14</span><span class="fact-t">agreement with <code>survival::coxph</code> coefficients</span></li>
-    <li><span class="fact-n">#27860</span><span class="fact-t">float row-group skipping, accepted upstream in polars</span></li>
-  </ul>
+  <section class="block">
+    <h2>Research</h2>
+    <div class="entries">
+      <article class="entry">
+        <p class="lead-para">Human genetics before clinical machine learning. At the Wellcome Sanger Institute I worked on the African Genome Variation Project and the Uganda Genome Resource — whole-genome sequence from thousands of individuals, and a haplotype reference panel for a continent that reference panels had largely skipped. At Queen Mary University of London, deep learning on UK Biobank electronic health records for prediction of serious mental illness. Now clinical machine learning with the Benros group in Copenhagen, on national registry and EHR data.</p>
+        <p>Co-author on work in <em>Nature</em>, <em>Cell</em>, <em>PNAS</em> and <em>Nature Communications</em>.</p>
+        <p class="entry-links">
+          <a href="https://scholar.google.com/citations?user=UA_ITtQAAAAJ">publications on Google Scholar</a>
+        </p>
+      </article>
+    </div>
+  </section>
 
   <section class="block">
     <h2>Software</h2>
     <div class="entries">
 
       <article class="entry">
+        <p class="entry-intro">Registry-scale data breaks the standard statistical packages long before the statistics stop being valid. These implement the same estimators without holding the table in memory.</p>
+      </article>
+
+      <article class="entry">
         <h3><a href="https://github.com/tommycarstensen/coxstream">coxstream</a></h3>
-        <p class="entry-meta">Python &middot; R &middot; Cython &middot; survival analysis</p>
+        <p class="entry-meta">Python · R · Cython · survival analysis</p>
         <p>Exact out-of-core Cox proportional hazards regression. Each Newton–Raphson step becomes a sum over parquet row groups, so peak memory is flat in the number of rows while the estimates stay exact — coefficients and standard errors match <code>survival::coxph</code> and <code>lifelines</code> to numerical precision. Carries the Efron tie correction across chunk boundaries.</p>
         <p class="entry-links">
-          <a class="chip" href="https://pypi.org/project/coxstream/">pip install coxstream</a>
-          <a class="chip" href="https://cran.r-project.org/package=coxstream">CRAN</a>
-          <a class="chip" href="https://github.com/tommycarstensen/coxstream-r">R source</a>
+          <a href="https://pypi.org/project/coxstream/">pip install coxstream</a>
+          <span aria-hidden="true">/</span>
+          <a href="https://cran.r-project.org/package=coxstream">CRAN</a>
+          <span aria-hidden="true">/</span>
+          <a href="https://github.com/tommycarstensen/coxstream-r">R source</a>
         </p>
       </article>
 
       <article class="entry">
         <h3><a href="https://github.com/tommycarstensen/renew-glm">renew-glm</a></h3>
-        <p class="entry-meta">Python &middot; NumPy &middot; SciPy &middot; generalized linear models</p>
+        <p class="entry-meta">Python · NumPy · SciPy · generalized linear models</p>
         <p>Streaming GLMs with bounded memory — a Python implementation of Luo &amp; Song (2020)'s renewable estimation. One pass per iteration accumulates the sufficient statistics, so memory scales with the number of covariates rather than the number of rows. Gaussian, binomial and Poisson; agrees with <code>statsmodels</code> to machine precision.</p>
         <p class="entry-links">
-          <a class="chip" href="https://pypi.org/project/renew-glm/">pip install renew-glm</a>
+          <a href="https://pypi.org/project/renew-glm/">pip install renew-glm</a>
         </p>
       </article>
 
       <article class="entry">
         <h3><a href="https://github.com/tommycarstensen/plotpick">PlotPick</a></h3>
-        <p class="entry-meta">Python &middot; Claude Vision &middot; Streamlit &middot; PyMuPDF</p>
+        <p class="entry-meta">Python · Claude Vision · Streamlit · PyMuPDF</p>
         <p>Recovers the numbers behind published figures. Upload images, PDFs or ZIPs and it reads boxplots, bar charts and line plots back into structured tables. Benchmarked against ChartX and PlotQA with Claude, GPT, Gemini and DePlot baselines.</p>
         <p class="entry-links">
-          <a class="chip" href="https://plotpick.streamlit.app">live demo</a>
+          <a href="https://plotpick.streamlit.app">live demo</a>
         </p>
       </article>
 
@@ -126,18 +87,71 @@
   <section class="block">
     <h2>Talks</h2>
     <div class="entries">
-      <article class="entry entry-media">
-        <div class="entry-body">
-          <h3><a href="slides/optimization.html">RAM- and CPU-efficient data processing</a></h3>
-          <p class="entry-meta">23 slides &middot; Quarto / reveal.js &middot; synthetic registry-shaped data</p>
-          <p>Where the memory actually goes, measured rather than asserted: streaming engines against pandas, parquet against CSV, and what the wrong dtype costs. Python and R, 50–800 million rows, with the measurement methodology on the last slide.</p>
-          <p class="entry-links">
-            <a class="chip" href="slides/optimization.html">open the deck</a>
-          </p>
-        </div>
-        <a class="entry-thumb" href="slides/optimization.html" tabindex="-1" aria-hidden="true">
-          <img src="slides/optimization-preview.png" alt="" width="760" height="655" loading="lazy">
-        </a>
+      <article class="entry">
+        <h3><a href="slides/optimization.html">RAM- and CPU-efficient data processing</a></h3>
+        <p class="entry-meta">23 slides · Quarto / reveal.js · synthetic registry-shaped data</p>
+        <p>Where the memory actually goes, measured rather than asserted: streaming engines against pandas, parquet against CSV, and what the wrong dtype costs. Python and R, 50–800 million rows, with the measurement methodology on the last slide.</p>
+
+        <figure class="plot-figure">
+          <svg class="plot" viewBox="0 0 760 300" role="img" aria-labelledby="plot-title plot-desc">
+            <title id="plot-title">Peak memory when grouping 100 to 800 million rows</title>
+            <desc id="plot-desc">pandas needs 3.5 GB at 100 million rows and 13.5 GB at 400 million, then runs out of memory. polars streams the same query and stays between 0.29 and 0.40 GB all the way to 800 million rows.</desc>
+
+            <g class="grid">
+              <line x1="70" y1="165" x2="720" y2="165"></line>
+              <line x1="70" y1="90"  x2="720" y2="90"></line>
+            </g>
+            <line class="baseline" x1="70" y1="240" x2="720" y2="240"></line>
+
+            <g class="tick">
+              <text x="58" y="244" text-anchor="end">0</text>
+              <text x="58" y="169" text-anchor="end">5</text>
+              <text x="58" y="94"  text-anchor="end">10</text>
+              <text x="70"  y="262" text-anchor="middle">100</text>
+              <text x="163" y="262" text-anchor="middle">200</text>
+              <text x="349" y="262" text-anchor="middle">400</text>
+              <text x="720" y="262" text-anchor="middle">800</text>
+              <text x="395" y="288" text-anchor="middle" class="axis-title">ROWS, MILLIONS</text>
+              <text x="18" y="135" text-anchor="middle" class="axis-title" transform="rotate(-90 18 135)">PEAK RAM, GB</text>
+            </g>
+
+            <polyline class="line-stream" points="70,235.7 720,234"></polyline>
+            <polyline class="line-load"   points="70,187.5 163,138 349,37.5"></polyline>
+
+            <g class="dot-stream">
+              <circle cx="70"  cy="235.7" r="3"></circle>
+              <circle cx="720" cy="234"   r="3"></circle>
+            </g>
+
+            <g class="dot-load">
+              <circle cx="70"  cy="187.5" r="3.5"></circle>
+              <circle cx="163" cy="138"   r="3.5"></circle>
+            </g>
+
+            <g class="oom">
+              <line x1="341" y1="29.5" x2="357" y2="45.5"></line>
+              <line x1="357" y1="29.5" x2="341" y2="45.5"></line>
+            </g>
+
+            <g class="values">
+              <text class="value" x="80"  y="201">3.5</text>
+              <text class="value" x="173" y="151">6.8</text>
+              <text class="value" x="333" y="47" text-anchor="end">13.5</text>
+            </g>
+
+            <g class="annot">
+              <text x="372" y="34" class="annot-load">pandas</text>
+              <text x="372" y="52" class="annot-sub annot-wide">loads the whole table — out of memory past 400 M</text>
+              <text x="372" y="56" class="annot-sub annot-narrow">out of memory past 400 M</text>
+              <text x="716" y="220" text-anchor="end" class="annot-strm">polars — streams, 0.29 to 0.40 GB</text>
+            </g>
+          </svg>
+          <figcaption>One result from the deck: grouping one measure across 100 groups, cold cache. Same query, same machine, same file — the difference is whether the engine holds the table or streams it.</figcaption>
+        </figure>
+
+        <p class="entry-links">
+          <a href="slides/optimization.html">open the deck</a>
+        </p>
       </article>
     </div>
   </section>
@@ -165,15 +179,6 @@
             <span>Two merged documentation fixes.</span>
           </li>
         </ul>
-      </article>
-    </div>
-  </section>
-
-  <section class="block">
-    <h2>Research</h2>
-    <div class="entries">
-      <article class="entry">
-        <p>Human genetics and population health before clinical machine learning: the African Genome Variation Project and the Uganda Genome Resource at the Wellcome Sanger Institute, deep learning on UK Biobank electronic health records at Queen Mary University of London, and clinical machine learning with the Benros group in Copenhagen. Co-author on work in <em>Nature</em>, <em>Cell</em>, <em>PNAS</em> and <em>Nature Communications</em>.</p>
       </article>
     </div>
   </section>
