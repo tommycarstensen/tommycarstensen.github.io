@@ -64,7 +64,9 @@ code { font-family: var(--mono); font-size: 0.86em; }
 
 /* ── Masthead ───────────────────────────────────────────────── */
 
-.masthead { display: flex; flex-direction: column; gap: 0.9rem; }
+/* The masthead sits on the same grid as the sections, so the page has one
+   text edge: labels hang in the left margin, everything else lines up. */
+.masthead { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
 
 .masthead h1 {
   font-family: var(--sans);
@@ -72,6 +74,7 @@ code { font-family: var(--mono); font-size: 0.86em; }
   font-weight: 700;
   letter-spacing: -0.022em;
   line-height: 1.05;
+  color: var(--ku);
 }
 
 .role {
@@ -83,12 +86,17 @@ code { font-family: var(--mono); font-size: 0.86em; }
   color: var(--muted);
 }
 
-/* The one brand gesture: a KU-red rule closing the masthead. */
 .masthead::after {
   content: "";
   height: 2px;
   background: var(--ku);
   margin-top: 0.4rem;
+}
+
+@media (min-width: 54rem) {
+  .masthead { grid-template-columns: 8rem minmax(0, 1fr); column-gap: 3.25rem; }
+  .masthead > *,
+  .masthead::after { grid-column: 2; }
 }
 
 .lede {
@@ -154,15 +162,37 @@ code { font-family: var(--mono); font-size: 0.86em; }
 
 .annot-narrow { display: none; }
 
-.plot-figure figcaption {
-  font-size: 0.95rem;
-  color: var(--muted);
-  max-width: 40rem;
-  text-wrap: pretty;
+/* ── Publications ───────────────────────────────────────────── */
+
+.pubs { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+
+.pubs li { display: grid; gap: 0.1rem 1.5rem; }
+
+@media (min-width: 40rem) {
+  /* 12rem so "2024 · Nature Medicine" stays on one line. */
+  .pubs li { grid-template-columns: 12rem minmax(0, 1fr); }
 }
 
-.plot-figure figcaption a { color: var(--ku); text-decoration: none; border-bottom: 1px solid transparent; }
-.plot-figure figcaption a:hover { border-color: var(--ku); }
+.pubs .venue {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ku);
+  align-self: start;
+}
+
+.pubs .pub-title { font-size: 0.99rem; color: var(--ink); text-wrap: pretty; }
+
+/* Scoped to .entry to outrank `.entry p`, which caps width at the measure. */
+.entry .metrics {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  max-width: none;
+}
+
+.metrics strong { color: var(--ku); font-weight: 600; }
 
 body.animate .line-load,
 body.animate .line-stream {
@@ -186,7 +216,7 @@ body.animate .line-load   { animation-delay: 0.35s; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--faint);
+  color: var(--ku);
 }
 
 @media (min-width: 54rem) {
@@ -224,8 +254,9 @@ body.animate .line-load   { animation-delay: 0.35s; }
 
 .entry p { max-width: var(--measure); font-size: 1.01rem; }
 
-/* The opening research paragraph carries the page, so it is set larger. */
-.lead-para { font-size: 1.1rem; line-height: 1.58; }
+/* The opening research paragraph carries the page, so it is set larger.
+   Scoped to .entry to outrank `.entry p`, which sets a font-size of its own. */
+.entry .lead-para { font-size: 1.1rem; line-height: 1.58; }
 
 .entry-intro { color: var(--muted); }
 
