@@ -118,9 +118,11 @@
       <article class="entry">
         <h3><a href="https://github.com/tommycarstensen/renew-glm">renew-glm</a></h3>
         <p class="entry-meta">Python · NumPy · SciPy · generalized linear models</p>
-        <p>Streaming generalized linear models with bounded memory, implementing the renewable estimation of Luo and Song (2020). One pass per iteration accumulates the sufficient statistics, so memory scales with the number of covariates rather than the number of rows. Gaussian, binomial and Poisson, checked against <code>statsmodels</code> in the test suite.</p>
+        <p>Streaming generalized linear models with bounded memory, implementing the renewable estimation of Luo and Song (2020). One pass per iteration accumulates the sufficient statistics, so the streaming path holds one chunk plus <em>O(p&sup2;)</em> state, independent of the number of rows. The chunk-buffered path trades that for standard errors. Gaussian, binomial and Poisson, checked against <code>statsmodels</code> in the test suite.</p>
         <p class="entry-links">
           <a href="https://pypi.org/project/renew-glm/">pip install renew-glm</a>
+          <span aria-hidden="true">/</span>
+          <a href="https://doi.org/10.5281/zenodo.21950314">doi:10.5281/zenodo.21950314</a>
         </p>
       </article>
 
