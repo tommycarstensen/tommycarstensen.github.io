@@ -264,16 +264,19 @@ body.animate .line-load   { animation-delay: 0.35s; }
 
 .pub-main { display: flex; flex-direction: column; gap: 0.18rem; }
 
+/* A real text underline, not a border. A border on a wrapping anchor spans the
+   whole grid cell, so it reads as a rule between the title and the author line
+   rather than as a link. text-decoration follows each line and hugs the text. */
 .pubs .pub-title {
   font-family: var(--serif);
   font-size: 1.02rem;
-  line-height: 1.4;
+  line-height: 1.45;
   text-wrap: pretty;
-  text-decoration: none;
-  border-bottom: 1px solid var(--underline);
-  padding-bottom: 1px;
-  align-self: start;
-  transition: color 0.15s, border-color 0.15s;
+  text-decoration: underline;
+  text-decoration-color: var(--underline);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  transition: color 0.15s, text-decoration-color 0.15s;
 }
 
 .pubs .pub-title:hover { color: var(--ku); border-color: var(--ku); }
