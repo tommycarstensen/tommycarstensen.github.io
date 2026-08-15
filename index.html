@@ -57,7 +57,7 @@
             </div>
           </li>
           <li>
-            <span class="venue">2020 &middot; Nature Comms</span>
+            <span class="venue">2020 &middot; Nature Communications</span>
             <div class="pub-main">
               <a class="pub-title" href="https://doi.org/10.1038/s41467-020-17696-2">Distinct genetic architectures and environmental factors associate with host response to γ2-herpesvirus infections</a>
               <span class="authors">Sallah N, et al. &middot; 4th of 20 authors</span>
@@ -118,7 +118,7 @@
       <article class="entry">
         <h3><a href="https://github.com/tommycarstensen/renew-glm">renew-glm</a></h3>
         <p class="entry-meta">Python · NumPy · SciPy · generalized linear models</p>
-        <p>Streaming generalized linear models with bounded memory, implementing Luo &amp; Song (2020)'s renewable estimation. One pass per iteration accumulates the sufficient statistics, so memory scales with the number of covariates rather than the number of rows. Gaussian, binomial and Poisson, checked against <code>statsmodels</code> in the test suite.</p>
+        <p>Streaming generalized linear models with bounded memory, implementing the renewable estimation of Luo and Song (2020). One pass per iteration accumulates the sufficient statistics, so memory scales with the number of covariates rather than the number of rows. Gaussian, binomial and Poisson, checked against <code>statsmodels</code> in the test suite.</p>
         <p class="entry-links">
           <a href="https://pypi.org/project/renew-glm/">pip install renew-glm</a>
         </p>
@@ -129,7 +129,7 @@
         <p class="entry-meta">Python · Claude Vision · Streamlit · PyMuPDF</p>
         <p>Recovers the numbers behind published figures. Upload images, PDFs or ZIPs and it reads boxplots, bar charts and line plots back into structured tables. Benchmarked against ChartX and PlotQA with Claude, GPT, Gemini and DePlot baselines.</p>
         <p class="entry-links">
-          <a href="https://plotpick.streamlit.app">live demo</a>
+          <a href="https://plotpick.streamlit.app">hosted app (Streamlit sign-in)</a>
         </p>
       </article>
 
@@ -155,11 +155,11 @@
     <h2>Upstream</h2>
     <div class="entries">
       <article class="entry">
-        <p class="entry-intro">Fixes and reports accepted into the tools this work depends on</p>
+        <p class="entry-intro">Reports and fixes accepted into the tools this work depends on.</p>
         <ul class="upstream">
           <li>
             <a href="https://github.com/pola-rs/polars/issues/27860">polars #27860</a>
-            <span>Float <code>&gt;=</code> filters could never skip parquet row groups, because Parquet's min/max statistics exclude NaN while polars orders NaN as the largest value. Root-caused with the maintainers and gated on <code>nan_count</code>; accepted.</span>
+            <span>Reported with a reproducer at 200 million rows: parquet min/max statistics exclude NaN while polars orders NaN as the largest value, so float <code>&gt;=</code> filters could never skip row groups. Labelled accepted upstream; the <code>nan_count</code>-gated fix is verified locally and not yet merged.</span>
           </li>
           <li>
             <a href="https://github.com/samtools/bcftools/pulls?q=is%3Apr+author%3Atommycarstensen+is%3Amerged">samtools/bcftools</a>
