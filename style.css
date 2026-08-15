@@ -281,28 +281,6 @@ body.animate .line-load   { animation-delay: 0.35s; }
 .pubs .authors { font-size: 0.82rem; color: var(--faint); }
 .pubs .authors b { color: var(--muted); font-weight: 700; }
 
-/* Citation figures in the ku.dk "Tal og fakta" manner: red numeral,
-   quiet caption, thin red rule closing the block. */
-.entry .metrics {
-  max-width: none;
-  margin-top: 0.5rem;
-  padding-bottom: 0.7rem;
-  border-bottom: 1px solid var(--ku);
-  font-size: 0.9rem;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.entry .metrics strong {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--ku);
-  vertical-align: -0.06em;
-  margin-right: 0.15rem;
-}
-
-.entry .metrics .sep { margin: 0 0.55rem; color: var(--rule); }
-
 /* ── Upstream ───────────────────────────────────────────────── */
 
 .upstream { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
