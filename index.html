@@ -103,7 +103,7 @@
       <article class="entry">
         <h3><a href="https://github.com/tommycarstensen/coxstream">coxstream</a></h3>
         <p class="entry-meta">Python · R · Cython · survival analysis</p>
-        <p>Exact out-of-core Cox proportional hazards regression. Each Newton–Raphson step becomes a sum over parquet row groups, so peak memory is flat in the number of rows while the estimates stay exact: coefficients and standard errors match <code>survival::coxph</code> and <code>lifelines</code> to numerical precision. Carries the Efron tie correction across chunk boundaries.</p>
+        <p>Exact out-of-core Cox proportional hazards regression. Each Newton–Raphson step becomes a sum over parquet row groups, so peak memory is one row group plus <em>O(p&sup2;)</em> state rather than the whole table. The estimates stay exact: coefficients agree with R's <code>survival::coxph</code> to 2e-14 at two million rows, and with <code>lifelines</code> to 3e-14 on data rounded to 120 distinct event times, where ties necessarily straddle chunk boundaries. Standard errors agree to 2e-13.</p>
         <p class="entry-links">
           <a href="https://pypi.org/project/coxstream/">pip install coxstream</a>
           <span aria-hidden="true">/</span>
