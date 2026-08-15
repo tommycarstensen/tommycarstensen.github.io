@@ -262,7 +262,24 @@ body.animate .line-load   { animation-delay: 0.35s; }
   font-variant-numeric: tabular-nums;
 }
 
-.pubs .pub-title { font-family: var(--serif); font-size: 1.02rem; text-wrap: pretty; }
+.pub-main { display: flex; flex-direction: column; gap: 0.18rem; }
+
+.pubs .pub-title {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  line-height: 1.4;
+  text-wrap: pretty;
+  text-decoration: none;
+  border-bottom: 1px solid var(--underline);
+  padding-bottom: 1px;
+  align-self: start;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.pubs .pub-title:hover { color: var(--ku); border-color: var(--ku); }
+
+.pubs .authors { font-size: 0.82rem; color: var(--faint); }
+.pubs .authors b { color: var(--muted); font-weight: 700; }
 
 /* Citation figures in the ku.dk "Tal og fakta" manner: red numeral,
    quiet caption, thin red rule closing the block. */
