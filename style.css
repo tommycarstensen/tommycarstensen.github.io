@@ -20,9 +20,10 @@
   --panel: #f0efec;
   --ink:   #16130f;
   --muted: #55514b;
-  --faint: #857f77;
+  --faint: #6b655c;
   --line:  #e5e0d8;
   --rule:  #c9c2b8;
+  --underline: #8a8175;
 
   --serif: "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
   --sans:  "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
@@ -111,7 +112,7 @@ code { font-family: var(--mono); font-size: 0.88em; }
 .links a {
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--underline);
   padding-bottom: 1px;
   transition: color 0.15s, border-color 0.15s;
 }
@@ -154,7 +155,7 @@ code { font-family: var(--mono); font-size: 0.88em; }
   letter-spacing: -0.005em;
 }
 
-.entry h3 a { text-decoration: none; border-bottom: 1.5px solid var(--rule); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+.entry h3 a { text-decoration: none; border-bottom: 1.5px solid var(--underline); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
 .entry h3 a:hover { color: var(--ku); border-color: var(--ku); }
 
 .entry-meta { font-family: var(--mono); font-size: 0.75rem; color: var(--faint); }
@@ -187,7 +188,7 @@ code { font-family: var(--mono); font-size: 0.88em; }
 .entry-links a {
   color: var(--muted);
   text-decoration: none;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--underline);
   padding-bottom: 1px;
   transition: color 0.15s, border-color 0.15s;
 }
@@ -300,7 +301,7 @@ body.animate .line-load   { animation-delay: 0.35s; }
   font-size: 0.82rem;
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--underline);
   justify-self: start;
   align-self: start;
   padding-bottom: 1px;
@@ -330,12 +331,12 @@ body.animate .line-load   { animation-delay: 0.35s; }
 .site-footer a:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
 
 @media (max-width: 46rem) {
-  .plot .tick text { font-size: 15px; }
-  .plot .axis-title { font-size: 13px; }
-  .value { font-size: 14px; }
-  .annot-load { font-size: 18px; }
-  .annot-sub  { font-size: 14px; }
-  .annot-strm { font-size: 14px; }
+  .plot .tick text { font-size: 22px; }
+  .plot .axis-title { font-size: 19px; }
+  .value { font-size: 21px; }
+  .annot-load { font-size: 26px; }
+  .annot-sub  { font-size: 21px; }
+  .annot-strm { font-size: 21px; }
   .annot-wide { display: none; }
   .annot-narrow { display: block; }
 }

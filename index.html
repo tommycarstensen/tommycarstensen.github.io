@@ -39,7 +39,7 @@
       </article>
 
       <article class="entry">
-        <p class="entry-label">Selected publications</p>
+        <h3 class="entry-label">Selected publications</h3>
         <ul class="pubs">
           <li>
             <span class="venue">2024 &middot; Nature Medicine</span>
@@ -66,7 +66,7 @@
             <span class="pub-title">The African Genome Variation Project shapes medical genetics in Africa</span>
           </li>
         </ul>
-        <p class="metrics"><strong>2,243</strong> citations <span class="sep">|</span> <strong>18</strong> h-index <span class="sep">|</span> Google Scholar, August 2026</p>
+        <p class="metrics"><strong>2,243</strong> citations <span class="sep" aria-hidden="true">|</span> <strong>18</strong> h-index <span class="sep" aria-hidden="true">|</span> Google Scholar, August 2026</p>
         <p class="entry-links">
           <a href="https://scholar.google.com/citations?user=UA_ITtQAAAAJ">full list on Google Scholar</a>
         </p>
@@ -121,65 +121,7 @@
     <div class="entries">
       <article class="entry">
         <h3><a href="slides/optimization.html">RAM- and CPU-efficient data processing</a></h3>
-        <p class="entry-meta">23 slides · Quarto / reveal.js · synthetic registry-shaped data</p>
-        <p>Where the memory actually goes, measured rather than asserted: streaming engines against pandas, parquet against CSV, and what the wrong dtype costs. Python and R, 50 to 800 million rows, with the measurement methodology on the last slide.</p>
-
-        <figure class="plot-figure">
-          <svg class="plot" viewBox="0 0 760 300" role="img" aria-labelledby="plot-title plot-desc">
-            <title id="plot-title">Peak memory when grouping 100 to 800 million rows</title>
-            <desc id="plot-desc">pandas needs 3.5 GB at 100 million rows and 13.5 GB at 400 million, then runs out of memory. polars streams the same query and stays between 0.29 and 0.40 GB all the way to 800 million rows.</desc>
-
-            <g class="grid">
-              <line x1="70" y1="165" x2="720" y2="165"></line>
-              <line x1="70" y1="90"  x2="720" y2="90"></line>
-            </g>
-            <line class="baseline" x1="70" y1="240" x2="720" y2="240"></line>
-
-            <g class="tick">
-              <text x="58" y="244" text-anchor="end">0</text>
-              <text x="58" y="169" text-anchor="end">5</text>
-              <text x="58" y="94"  text-anchor="end">10</text>
-              <text x="70"  y="262" text-anchor="middle">100</text>
-              <text x="163" y="262" text-anchor="middle">200</text>
-              <text x="349" y="262" text-anchor="middle">400</text>
-              <text x="720" y="262" text-anchor="middle">800</text>
-              <text x="395" y="288" text-anchor="middle" class="axis-title">ROWS, MILLIONS</text>
-              <text x="18" y="135" text-anchor="middle" class="axis-title" transform="rotate(-90 18 135)">PEAK RAM, GB</text>
-            </g>
-
-            <polyline class="line-stream" points="70,235.7 720,234"></polyline>
-            <polyline class="line-load"   points="70,187.5 163,138 349,37.5"></polyline>
-
-            <g class="dot-stream">
-              <circle cx="70"  cy="235.7" r="3"></circle>
-              <circle cx="720" cy="234"   r="3"></circle>
-            </g>
-
-            <g class="dot-load">
-              <circle cx="70"  cy="187.5" r="3.5"></circle>
-              <circle cx="163" cy="138"   r="3.5"></circle>
-            </g>
-
-            <g class="oom">
-              <line x1="341" y1="29.5" x2="357" y2="45.5"></line>
-              <line x1="357" y1="29.5" x2="341" y2="45.5"></line>
-            </g>
-
-            <g class="values">
-              <text class="value" x="80"  y="201">3.5</text>
-              <text class="value" x="173" y="151">6.8</text>
-              <text class="value" x="333" y="47" text-anchor="end">13.5</text>
-            </g>
-
-            <g class="annot">
-              <text x="372" y="34" class="annot-load">pandas</text>
-              <text x="372" y="52" class="annot-sub annot-wide">loads the whole table, out of memory past 400 M</text>
-              <text x="372" y="56" class="annot-sub annot-narrow">out of memory past 400 M</text>
-              <text x="716" y="220" text-anchor="end" class="annot-strm">polars streams, 0.29 to 0.40 GB</text>
-            </g>
-          </svg>
-        </figure>
-
+        <p class="entry-meta">23 slides · Quarto / reveal.js · Python and R · synthetic registry-shaped data</p>
         <p class="entry-links">
           <a href="slides/optimization.html">open the deck</a>
           <span aria-hidden="true">/</span>
