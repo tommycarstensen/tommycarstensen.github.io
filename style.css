@@ -1,130 +1,402 @@
+/* ------------------------------------------------------------------
+   Palette: KU-rød #901A1E and KU-grå #666666 are the University of
+   Copenhagen brand colours (designguide.ku.dk). KU publishes no hex
+   values beyond those two, so the grounds, hairlines and dark-mode
+   tints below are derived around them — warm neutrals biased toward
+   the red rather than neutral greys.
+   ------------------------------------------------------------------ */
+
 :root {
-  --bg:       #0b0b0f;
-  --surface:  #13131c;
-  --border:   #1f1f2e;
-  --text:     #dde1f0;
-  --muted:    #5a5f7a;
-  --violet:   #a78bfa;
-  --cyan:     #38bdf8;
-  --pink:     #f472b6;
-  --green:    #34d399;
+  --ku:        #901a1e;
+  --ku-strong: #6f1417;
+  --grey:      #666666;
+
+  --paper:   #fbfaf8;
+  --surface: #ffffff;
+  --ink:     #1a1614;
+  --muted:   #666666;
+  --faint:   #8c837e;
+  --line:    #e4ddd8;
+  --line-2:  #cfc5be;
+  --wash:    #f3eeea;
+
+  --sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --measure: 34rem;
+  --gap:     clamp(2.75rem, 6vw, 4.5rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ku:        #d4565b;
+    --ku-strong: #e8767a;
+    --grey:      #9a918c;
+
+    --paper:   #14100f;
+    --surface: #1b1615;
+    --ink:     #ece5e1;
+    --muted:   #a29894;
+    --faint:   #8a807b;
+    --line:    #2c2422;
+    --line-2:  #3d3330;
+    --wash:    #211a19;
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { -webkit-text-size-adjust: 100%; }
+
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 1rem;
-  line-height: 1.65;
-  padding: 1rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding: 0 1.5rem 6rem;
+  overflow-wrap: break-word;
+}
+
+/* KU red masthead band, the one piece of pure brand on the page */
+.band {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: var(--ku);
+  z-index: 10;
 }
 
 main {
-  max-width: 660px;
+  max-width: 58rem;
   margin: 0 auto;
-  padding: 5rem 0 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding-top: clamp(4rem, 11vw, 7.5rem);
 }
 
-/* ── Header ── */
-header { margin-bottom: 4rem; }
+a { color: inherit; }
 
-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, var(--violet), var(--cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 0.25rem;
+a:focus-visible,
+.chip:focus-visible {
+  outline: 2px solid var(--ku);
+  outline-offset: 3px;
+  border-radius: 1px;
 }
 
-header .tagline {
-  color: var(--muted);
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.75rem;
+/* Inline code stays in the text colour: the accent is spent on the plot,
+   the section labels and the numbers, not scattered through paragraphs. */
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  color: var(--ink);
+  background: var(--wash);
+  padding: 0.08em 0.3em;
+  border-radius: 2px;
 }
 
-header a {
-  color: var(--cyan);
-  text-decoration: none;
-  font-size: 0.9rem;
+/* ── Masthead ───────────────────────────────────────────────── */
+
+.masthead { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.masthead h1 {
+  font-size: clamp(2.9rem, 8.5vw, 4.75rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  text-wrap: balance;
 }
 
-header a:hover { text-decoration: underline; }
-
-/* ── Section heading ── */
-h2 {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+.role {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 1.5rem;
 }
 
-/* ── Project cards ── */
-.projects { display: flex; flex-direction: column; gap: 1rem; }
-
-.project {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.4rem 1.6rem;
-  transition: border-color 0.2s;
+.lede {
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  line-height: 1.45;
+  max-width: var(--measure);
+  text-wrap: pretty;
 }
 
-.project:hover { border-color: var(--violet); }
+.lede em { font-style: normal; color: var(--ku); }
 
-.project-header {
+.links {
   display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
   flex-wrap: wrap;
+  gap: 0 1.75rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  margin-top: 0.25rem;
 }
 
-.project h3 { font-size: 1rem; font-weight: 600; }
-
-.project h3 a {
-  color: var(--text);
+.links a {
+  color: var(--muted);
   text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--line-2);
+  transition: color 0.15s, border-color 0.15s;
 }
 
-.project h3 a:hover { color: var(--violet); }
+.links a:hover { color: var(--ku); border-color: var(--ku); }
 
-.badge {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 0.15rem 0.55rem;
-  border-radius: 99px;
-  background: color-mix(in srgb, var(--green) 15%, transparent);
-  color: var(--green);
-  border: 1px solid color-mix(in srgb, var(--green) 30%, transparent);
+/* ── Hero plot ──────────────────────────────────────────────── */
+
+.plot-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 2.25rem 0 1.75rem;
+}
+
+.plot { width: 100%; height: auto; display: block; overflow: visible; }
+
+.plot .grid line { stroke: var(--line); stroke-width: 1; }
+
+.plot .tick text {
+  font-family: var(--mono);
+  font-size: 11px;
+  fill: var(--faint);
+}
+
+.plot .axis-title { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.plot polyline { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+.line-stream { stroke: var(--ink); stroke-width: 2; }
+.line-load   { stroke: var(--ku);  stroke-width: 2.5; }
+
+.dot-load circle   { fill: var(--ku); }
+.dot-stream circle { fill: var(--ink); }
+
+.oom line { stroke: var(--ku); stroke-width: 3; stroke-linecap: round; }
+
+.plot .annot text { font-family: var(--mono); }
+.annot-load   { font-size: 13px; font-weight: 700; fill: var(--ku); }
+.annot-sub    { font-size: 11px; fill: var(--faint); }
+.annot-stream { font-size: 11.5px; fill: var(--ink); }
+
+.annot-narrow { display: none; }
+
+/* The plot scales to the column width, so on a phone its type would land
+   around 7px. Enlarge the labels in viewBox units and swap in the shorter
+   annotation, which still fits the 760-unit canvas at that size. */
+@media (max-width: 46rem) {
+  .plot .tick text { font-size: 15px; }
+  .plot .axis-title { font-size: 14px; }
+  .annot-load   { font-size: 20px; }
+  .annot-sub    { font-size: 15px; }
+  .annot-stream { font-size: 15px; }
+  .annot-wide   { display: none; }
+  .annot-narrow { display: block; }
+}
+
+.plot-figure figcaption {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 42rem;
+  text-wrap: pretty;
+}
+
+.plot-figure figcaption a {
+  color: var(--ku);
   text-decoration: none;
+  border-bottom: 1px solid transparent;
   white-space: nowrap;
 }
 
-.project p {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin-bottom: 0.9rem;
+.plot-figure figcaption a:hover { border-color: var(--ku); }
+
+body.animate .line-load,
+body.animate .line-stream {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: draw 1.15s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
-.tags {
+body.animate .line-stream { animation-delay: 0.15s; }
+body.animate .line-load   { animation-delay: 0.45s; }
+
+body.animate .oom,
+body.animate .dot-load,
+body.animate .dot-stream,
+body.animate .annot { opacity: 0; animation: fade 0.5s ease forwards 1.5s; }
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade { to { opacity: 1; } }
+
+/* ── Facts ──────────────────────────────────────────────────── */
+
+.facts {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1.75rem 2.5rem;
+}
+
+.facts li { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.fact-n {
+  font-family: var(--mono);
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ku);
+}
+
+.fact-t { font-size: 0.9rem; color: var(--muted); line-height: 1.45; }
+
+/* ── Blocks with a sticky label rail ────────────────────────── */
+
+.block {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.block h2 {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ku);
+}
+
+@media (min-width: 54rem) {
+  .block {
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 0 3.5rem;
+  }
+  .block h2 { position: sticky; top: 3rem; align-self: start; }
+}
+
+.entries { display: flex; flex-direction: column; }
+
+.entry {
+  border-top: 1px solid var(--line);
+  padding: 1.6rem 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  flex-direction: column;
+  gap: 0.55rem;
 }
 
-.tags span {
-  font-size: 0.72rem;
-  font-family: ui-monospace, monospace;
-  padding: 0.15rem 0.55rem;
-  border-radius: 5px;
-  background: var(--border);
+.entry:last-child { border-bottom: 1px solid var(--line); }
+
+.entry h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
+
+.entry h3 a {
+  text-decoration: none;
+  background-image: linear-gradient(var(--ku), var(--ku));
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.2s, color 0.15s;
+  padding-bottom: 2px;
+}
+
+.entry h3 a:hover { color: var(--ku); background-size: 100% 1.5px; }
+
+.entry-meta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+}
+
+.entry p { max-width: var(--measure); color: var(--ink); font-size: 0.97rem; }
+
+.entry-intro { color: var(--muted); }
+
+.entry-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.3rem; }
+
+.chip {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  padding: 0.28rem 0.6rem;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
   color: var(--muted);
+  text-decoration: none;
+  background: var(--surface);
+  transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+}
+
+.chip:hover { color: var(--ku); border-color: var(--ku); background: var(--wash); }
+
+/* Talk entry: text beside a preview of the deck */
+
+.entry-media { gap: 1.5rem; }
+
+@media (min-width: 46rem) {
+  .entry-media {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    align-items: start;
+  }
+}
+
+.entry-body { display: flex; flex-direction: column; gap: 0.55rem; }
+
+.entry-thumb { display: block; border: 1px solid var(--line-2); background: #fff; }
+
+.entry-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(0.85);
+  transition: filter 0.2s;
+}
+
+.entry-thumb:hover img { filter: saturate(1); }
+
+/* ── Upstream list ──────────────────────────────────────────── */
+
+.upstream { list-style: none; display: flex; flex-direction: column; gap: 1.05rem; }
+
+.upstream li {
+  display: grid;
+  gap: 0.15rem 1.5rem;
+  max-width: var(--measure);
+}
+
+@media (min-width: 40rem) {
+  .upstream li { grid-template-columns: 11rem minmax(0, 1fr); max-width: none; }
+}
+
+.upstream a {
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  color: var(--ku);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  justify-self: start;
+}
+
+.upstream a:hover { border-color: var(--ku); }
+
+.upstream span { font-size: 0.92rem; color: var(--muted); max-width: var(--measure); }
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+footer {
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--faint);
+}
+
+footer a { color: var(--faint); text-decoration: none; border-bottom: 1px solid var(--line-2); }
+footer a:hover { color: var(--ku); border-color: var(--ku); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
