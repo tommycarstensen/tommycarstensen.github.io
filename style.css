@@ -1,17 +1,15 @@
 /* ------------------------------------------------------------------
-   A printed page, not a product landing page.
+   Palette and structure follow how the University of Copenhagen uses
+   its own identity on ku.dk: a KU-red band above the masthead, black
+   serif display headings, sans-serif body text, red reserved for
+   labels, figures and rules, a light grey panel for exhibits, and a
+   solid KU-red footer block.
 
-   Single theme, deliberately. KU-rød #901A1E is the identity, and it is
-   only itself on paper: lightening it for a dark ground turns it into a
-   coral that belongs to no one. The page therefore commits to paper and
-   paints every colour explicitly.
+   KU-rød #901A1E and KU-grå #666666 are the two values KU publishes
+   (designguide.ku.dk). The warm neutrals are derived around the red.
 
-   KU-rød #901A1E and KU-grå #666666 are the two values the University of
-   Copenhagen publishes (designguide.ku.dk). The warm neutrals below are
-   derived around the red rather than inherited greys.
-
-   Red appears in exactly three places: the rule under the masthead, the
-   series that runs out of memory, and links on hover. Nothing else.
+   Single theme, deliberately: lightening KU-rød for a dark ground
+   turns it into a coral that belongs to no one.
    ------------------------------------------------------------------ */
 
 :root {
@@ -19,9 +17,10 @@
   --ku-deep: #6f1417;
 
   --paper: #fcfbf9;
+  --panel: #f0efec;
   --ink:   #16130f;
-  --muted: #5e5a54;
-  --faint: #8a857d;
+  --muted: #55514b;
+  --faint: #857f77;
   --line:  #e5e0d8;
   --rule:  #c9c2b8;
 
@@ -29,8 +28,10 @@
   --sans:  "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
-  --measure: 33rem;
-  --gap:     clamp(3rem, 6.5vw, 5rem);
+  --measure: 34rem;
+  --gap:     clamp(2.75rem, 6vw, 4.5rem);
+  --pad:     1.5rem;
+  --width:   56rem;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,57 +41,55 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--serif);
-  font-size: 1.075rem;
-  line-height: 1.62;
-  padding: 0 1.5rem 7rem;
+  font-family: var(--sans);
+  font-size: 1.02rem;
+  line-height: 1.6;
   overflow-wrap: break-word;
 }
 
+/* KU-red band across the top, as on ku.dk */
+.band { height: 7px; background: var(--ku); }
+
 main {
-  max-width: 56rem;
+  max-width: var(--width);
   margin: 0 auto;
+  padding: clamp(3rem, 7vw, 4.5rem) var(--pad) 5rem;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  padding-top: clamp(3.5rem, 9vw, 6rem);
 }
 
 a { color: inherit; }
 
 a:focus-visible { outline: 2px solid var(--ku); outline-offset: 3px; }
 
-code { font-family: var(--mono); font-size: 0.86em; }
+code { font-family: var(--mono); font-size: 0.88em; }
 
 /* ── Masthead ───────────────────────────────────────────────── */
 
-/* The masthead sits on the same grid as the sections, so the page has one
-   text edge: labels hang in the left margin, everything else lines up. */
-.masthead { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
+.masthead { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
 
 .masthead h1 {
-  font-family: var(--sans);
-  font-size: clamp(2.1rem, 4.6vw, 3.1rem);
-  font-weight: 700;
-  letter-spacing: -0.022em;
-  line-height: 1.05;
-  color: var(--ku);
+  font-family: var(--serif);
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.06;
 }
 
 .role {
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ku);
 }
 
 .masthead::after {
   content: "";
   height: 2px;
   background: var(--ku);
-  margin-top: 0.4rem;
+  margin-top: 0.35rem;
 }
 
 @media (min-width: 54rem) {
@@ -100,22 +99,17 @@ code { font-family: var(--mono); font-size: 0.86em; }
 }
 
 .lede {
+  font-family: var(--serif);
   font-size: 1.24rem;
   line-height: 1.5;
   max-width: var(--measure);
   text-wrap: pretty;
 }
 
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 1.4rem;
-  font-family: var(--sans);
-  font-size: 0.86rem;
-}
+.links { display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem; font-size: 0.88rem; }
 
 .links a {
-  color: var(--muted);
+  color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--rule);
   padding-bottom: 1px;
@@ -124,22 +118,97 @@ code { font-family: var(--mono); font-size: 0.86em; }
 
 .links a:hover { color: var(--ku); border-color: var(--ku); }
 
-/* ── Figure ─────────────────────────────────────────────────── */
+/* ── Blocks ─────────────────────────────────────────────────── */
 
-/* The figure belongs to the talk it came from, not to the top of the page. */
-.plot-figure {
+.block { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+
+.block h2 {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ku);
+}
+
+@media (min-width: 54rem) {
+  .block { grid-template-columns: 8rem minmax(0, 1fr); gap: 0 3.25rem; }
+  .block h2 { position: sticky; top: 2.5rem; align-self: start; }
+}
+
+.entries { display: flex; flex-direction: column; }
+
+.entry {
+  border-top: 1px solid var(--line);
+  padding: 1.45rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-  margin: 0.7rem 0 0.3rem;
-  padding: 1.1rem 0 0;
-  border-top: 1px solid var(--line);
+  gap: 0.45rem;
+}
+
+.entry:last-child { border-bottom: 1px solid var(--line); }
+
+.entry h3 {
+  font-family: var(--serif);
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.entry h3 a { text-decoration: none; border-bottom: 1.5px solid var(--rule); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+.entry h3 a:hover { color: var(--ku); border-color: var(--ku); }
+
+.entry-meta { font-family: var(--mono); font-size: 0.75rem; color: var(--faint); }
+
+.entry p { max-width: var(--measure); font-size: 0.99rem; }
+
+.entry .lead-para { font-size: 1.06rem; line-height: 1.58; }
+
+/* Sentences: normal case. Uppercase is for the short label below only. */
+.entry-intro { color: var(--muted); }
+
+.entry-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.entry-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  margin-top: 0.25rem;
+}
+
+.entry-links a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.entry-links a:hover { color: var(--ku); border-color: var(--ku); }
+
+.entry-links span { color: var(--rule); }
+
+/* ── Figure, on a grey panel as ku.dk frames its exhibits ───── */
+
+.plot-figure {
+  background: var(--panel);
+  padding: 1.5rem 1.35rem 1.1rem;
+  margin: 0.75rem 0 0.25rem;
+  border-bottom: 2px solid var(--ku);
 }
 
 .plot { width: 100%; height: auto; display: block; }
 
 .plot .baseline { stroke: var(--ink); stroke-width: 1; }
-.plot .grid line { stroke: var(--line); stroke-width: 1; }
+.plot .grid line { stroke: #d8d5cf; stroke-width: 1; }
 
 .plot text { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .plot .tick text { font-size: 11px; fill: var(--faint); }
@@ -155,44 +224,12 @@ code { font-family: var(--mono); font-size: 0.86em; }
 
 .oom line { stroke: var(--ku); stroke-width: 2.75; stroke-linecap: round; }
 
-.value       { font-size: 11px; fill: var(--muted); }
-.annot-load  { font-size: 12px; font-weight: 700; fill: var(--ku); }
-.annot-sub   { font-size: 11px; fill: var(--faint); }
-.annot-strm  { font-size: 11px; fill: var(--ink); }
+.value      { font-size: 11px; fill: var(--muted); }
+.annot-load { font-size: 12px; font-weight: 700; fill: var(--ku); }
+.annot-sub  { font-size: 11px; fill: var(--faint); }
+.annot-strm { font-size: 11px; fill: var(--ink); }
 
 .annot-narrow { display: none; }
-
-/* ── Publications ───────────────────────────────────────────── */
-
-.pubs { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
-
-.pubs li { display: grid; gap: 0.1rem 1.5rem; }
-
-@media (min-width: 40rem) {
-  /* 12rem so "2024 · Nature Medicine" stays on one line. */
-  .pubs li { grid-template-columns: 12rem minmax(0, 1fr); }
-}
-
-.pubs .venue {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  font-variant-numeric: tabular-nums;
-  color: var(--ku);
-  align-self: start;
-}
-
-.pubs .pub-title { font-size: 0.99rem; color: var(--ink); text-wrap: pretty; }
-
-/* Scoped to .entry to outrank `.entry p`, which caps width at the measure. */
-.entry .metrics {
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  max-width: none;
-}
-
-.metrics strong { color: var(--ku); font-weight: 600; }
 
 body.animate .line-load,
 body.animate .line-stream {
@@ -206,86 +243,51 @@ body.animate .line-load   { animation-delay: 0.35s; }
 
 @keyframes draw { to { stroke-dashoffset: 0; } }
 
-/* ── Blocks ─────────────────────────────────────────────────── */
+/* ── Publications ───────────────────────────────────────────── */
 
-.block { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.pubs { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
 
-.block h2 {
-  font-family: var(--sans);
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ku);
+.pubs li { display: grid; gap: 0.1rem 1.5rem; }
+
+@media (min-width: 40rem) {
+  .pubs li { grid-template-columns: 12rem minmax(0, 1fr); }
 }
 
-@media (min-width: 54rem) {
-  .block { grid-template-columns: 8rem minmax(0, 1fr); gap: 0 3.25rem; }
-  .block h2 { position: sticky; top: 2.5rem; align-self: start; }
-}
-
-.entries { display: flex; flex-direction: column; }
-
-.entry {
-  border-top: 1px solid var(--line);
-  padding: 1.5rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.entry:last-child { border-bottom: 1px solid var(--line); }
-
-.entry h3 {
-  font-family: var(--sans);
-  font-size: 1.05rem;
+.pubs .venue {
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: -0.008em;
+  color: var(--ku);
+  align-self: start;
+  font-variant-numeric: tabular-nums;
 }
 
-.entry h3 a { text-decoration: none; border-bottom: 1.5px solid var(--rule); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
-.entry h3 a:hover { color: var(--ku); border-color: var(--ku); }
+.pubs .pub-title { font-family: var(--serif); font-size: 1.02rem; text-wrap: pretty; }
 
-.entry-meta {
-  font-family: var(--mono);
-  font-size: 0.76rem;
-  color: var(--faint);
-}
-
-.entry p { max-width: var(--measure); font-size: 1.01rem; }
-
-/* The opening research paragraph carries the page, so it is set larger.
-   Scoped to .entry to outrank `.entry p`, which sets a font-size of its own. */
-.entry .lead-para { font-size: 1.1rem; line-height: 1.58; }
-
-.entry-intro { color: var(--muted); }
-
-/* Plain links with hairline separators, rather than pill chips. */
-.entry-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.55rem 0.9rem;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  margin-top: 0.2rem;
-}
-
-.entry-links a {
+/* Citation figures in the ku.dk "Tal og fakta" manner: red numeral,
+   quiet caption, thin red rule closing the block. */
+.entry .metrics {
+  max-width: none;
+  margin-top: 0.5rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--ku);
+  font-size: 0.9rem;
   color: var(--muted);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 1px;
-  transition: color 0.15s, border-color 0.15s;
+  font-variant-numeric: tabular-nums;
 }
 
-.entry-links a:hover { color: var(--ku); border-color: var(--ku); }
+.entry .metrics strong {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ku);
+  vertical-align: -0.06em;
+  margin-right: 0.15rem;
+}
 
-.entry-links span { color: var(--line); }
+.entry .metrics .sep { margin: 0 0.55rem; color: var(--rule); }
 
 /* ── Upstream ───────────────────────────────────────────────── */
 
-.upstream { list-style: none; display: flex; flex-direction: column; gap: 0.95rem; }
+.upstream { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
 
 .upstream li { display: grid; gap: 0.1rem 1.5rem; max-width: var(--measure); }
 
@@ -299,8 +301,6 @@ body.animate .line-load   { animation-delay: 0.35s; }
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--rule);
-  /* Both axes: a grid item stretches by default, which would drop the
-     underline to the bottom of the row instead of under the text. */
   justify-self: start;
   align-self: start;
   padding-bottom: 1px;
@@ -310,18 +310,24 @@ body.animate .line-load   { animation-delay: 0.35s; }
 
 .upstream span { font-size: 0.97rem; color: var(--muted); max-width: var(--measure); }
 
-/* ── Footer ─────────────────────────────────────────────────── */
+/* ── Footer, a solid KU-red block as on ku.dk ───────────────── */
 
-footer {
-  border-top: 1px solid var(--line);
-  padding-top: 1.25rem;
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  color: var(--faint);
+.site-footer { background: var(--ku); color: #f7f2f0; }
+
+.site-footer .inner {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 2.25rem var(--pad) 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2.5rem;
+  font-size: 0.86rem;
 }
 
-footer a { color: var(--faint); text-decoration: none; border-bottom: 1px solid var(--line); }
-footer a:hover { color: var(--ku); border-color: var(--ku); }
+.site-footer a { color: #ffffff; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.45); padding-bottom: 1px; }
+.site-footer a:hover { border-color: #ffffff; }
+
+.site-footer a:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
 
 @media (max-width: 46rem) {
   .plot .tick text { font-size: 15px; }

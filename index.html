@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tommy Carstensen — human genetics and clinical machine learning</title>
-<meta name="description" content="Bioinformatician and data scientist in Copenhagen. Population-scale human genetics — African reference panels at the Wellcome Sanger Institute, UK Biobank health records, clinical machine learning on registry data — and the streaming methods that make exact estimates computable at that scale.">
+<title>Tommy Carstensen: human genetics and clinical machine learning</title>
+<meta name="description" content="Bioinformatician and data scientist in Copenhagen. Population-scale human genetics: African reference panels at the Wellcome Sanger Institute, UK Biobank health records, clinical machine learning on registry data, and the streaming methods that make exact estimates computable at that scale.">
 <meta name="theme-color" content="#901A1E">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Tommy Carstensen">
@@ -16,12 +16,14 @@
 </head>
 <body>
 
+<div class="band" aria-hidden="true"></div>
+
 <main>
 
   <header class="masthead">
     <h1>Tommy Carstensen</h1>
     <p class="role">Bioinformatician &middot; data scientist &middot; Copenhagen</p>
-    <p class="lede">Human genetics at population scale, and the methods that make it computable — reference panels for African populations at the Wellcome Sanger Institute, deep learning on UK Biobank health records, and clinical machine learning on national registry data.</p>
+    <p class="lede">Human genetics at population scale, and the methods that make it computable: reference panels for African populations at the Wellcome Sanger Institute, deep learning on UK Biobank health records, and clinical machine learning on national registry data.</p>
     <nav class="links" aria-label="Elsewhere">
       <a href="https://scholar.google.com/citations?user=UA_ITtQAAAAJ">Google Scholar</a>
       <a href="https://github.com/tommycarstensen">GitHub</a>
@@ -33,38 +35,38 @@
     <h2>Research</h2>
     <div class="entries">
       <article class="entry">
-        <p class="lead-para">Human genetics before clinical machine learning. At the Wellcome Sanger Institute I worked on the African Genome Variation Project and the Uganda Genome Resource — whole-genome sequence from thousands of individuals, and a haplotype reference panel for a continent that reference panels had largely skipped. At Queen Mary University of London, deep learning on UK Biobank electronic health records for prediction of serious mental illness. Now clinical machine learning with the Benros group in Copenhagen, on national registry and EHR data.</p>
+        <p class="lead-para">Human genetics before clinical machine learning. At the Wellcome Sanger Institute I worked on the African Genome Variation Project and the Uganda Genome Resource: whole-genome sequence from thousands of individuals, and a haplotype reference panel for a continent that reference panels had largely skipped. At Queen Mary University of London, deep learning on UK Biobank electronic health records for prediction of serious mental illness. Now clinical machine learning with the Benros group in Copenhagen, on national registry and EHR data.</p>
       </article>
 
       <article class="entry">
-        <p class="entry-intro">Selected publications</p>
+        <p class="entry-label">Selected publications</p>
         <ul class="pubs">
           <li>
-            <span class="venue">2024 · Nature Medicine</span>
+            <span class="venue">2024 &middot; Nature Medicine</span>
             <span class="pub-title">High-resolution African HLA resource uncovers HLA-DRB1 expression effects underlying vaccine response</span>
           </li>
           <li>
-            <span class="venue">2023 · Nature</span>
+            <span class="venue">2023 &middot; Nature</span>
             <span class="pub-title">Africa-specific human genetic variation near CHD1L associates with HIV-1 load</span>
           </li>
           <li>
-            <span class="venue">2020 · Nature Comms</span>
+            <span class="venue">2020 &middot; Nature Comms</span>
             <span class="pub-title">Distinct genetic architectures and environmental factors associate with host response to γ2-herpesvirus infections</span>
           </li>
           <li>
-            <span class="venue">2019 · Cell</span>
+            <span class="venue">2019 &middot; Cell</span>
             <span class="pub-title">Uganda Genome Resource enables insights into population history and genomic discovery in Africa</span>
           </li>
           <li>
-            <span class="venue">2019 · Diabetologia</span>
+            <span class="venue">2019 &middot; Diabetologia</span>
             <span class="pub-title">Genome-wide association study of type 2 diabetes in Africa</span>
           </li>
           <li>
-            <span class="venue">2015 · Nature</span>
+            <span class="venue">2015 &middot; Nature</span>
             <span class="pub-title">The African Genome Variation Project shapes medical genetics in Africa</span>
           </li>
         </ul>
-        <p class="metrics"><strong>2,243</strong> citations &middot; <strong>h-index 18</strong> — Google Scholar, August 2026</p>
+        <p class="metrics"><strong>2,243</strong> citations <span class="sep">|</span> <strong>18</strong> h-index <span class="sep">|</span> Google Scholar, August 2026</p>
         <p class="entry-links">
           <a href="https://scholar.google.com/citations?user=UA_ITtQAAAAJ">full list on Google Scholar</a>
         </p>
@@ -83,7 +85,7 @@
       <article class="entry">
         <h3><a href="https://github.com/tommycarstensen/coxstream">coxstream</a></h3>
         <p class="entry-meta">Python · R · Cython · survival analysis</p>
-        <p>Exact out-of-core Cox proportional hazards regression. Each Newton–Raphson step becomes a sum over parquet row groups, so peak memory is flat in the number of rows while the estimates stay exact — coefficients and standard errors match <code>survival::coxph</code> and <code>lifelines</code> to numerical precision. Carries the Efron tie correction across chunk boundaries.</p>
+        <p>Exact out-of-core Cox proportional hazards regression. Each Newton–Raphson step becomes a sum over parquet row groups, so peak memory is flat in the number of rows while the estimates stay exact: coefficients and standard errors match <code>survival::coxph</code> and <code>lifelines</code> to numerical precision. Carries the Efron tie correction across chunk boundaries.</p>
         <p class="entry-links">
           <a href="https://pypi.org/project/coxstream/">pip install coxstream</a>
           <span aria-hidden="true">/</span>
@@ -96,7 +98,7 @@
       <article class="entry">
         <h3><a href="https://github.com/tommycarstensen/renew-glm">renew-glm</a></h3>
         <p class="entry-meta">Python · NumPy · SciPy · generalized linear models</p>
-        <p>Streaming GLMs with bounded memory — a Python implementation of Luo &amp; Song (2020)'s renewable estimation. One pass per iteration accumulates the sufficient statistics, so memory scales with the number of covariates rather than the number of rows. Gaussian, binomial and Poisson; agrees with <code>statsmodels</code> to machine precision.</p>
+        <p>Streaming generalized linear models with bounded memory, implementing Luo &amp; Song (2020)'s renewable estimation. One pass per iteration accumulates the sufficient statistics, so memory scales with the number of covariates rather than the number of rows. Gaussian, binomial and Poisson; agrees with <code>statsmodels</code> to machine precision.</p>
         <p class="entry-links">
           <a href="https://pypi.org/project/renew-glm/">pip install renew-glm</a>
         </p>
@@ -120,7 +122,7 @@
       <article class="entry">
         <h3><a href="slides/optimization.html">RAM- and CPU-efficient data processing</a></h3>
         <p class="entry-meta">23 slides · Quarto / reveal.js · synthetic registry-shaped data</p>
-        <p>Where the memory actually goes, measured rather than asserted: streaming engines against pandas, parquet against CSV, and what the wrong dtype costs. Python and R, 50–800 million rows, with the measurement methodology on the last slide.</p>
+        <p>Where the memory actually goes, measured rather than asserted: streaming engines against pandas, parquet against CSV, and what the wrong dtype costs. Python and R, 50 to 800 million rows, with the measurement methodology on the last slide.</p>
 
         <figure class="plot-figure">
           <svg class="plot" viewBox="0 0 760 300" role="img" aria-labelledby="plot-title plot-desc">
@@ -171,15 +173,17 @@
 
             <g class="annot">
               <text x="372" y="34" class="annot-load">pandas</text>
-              <text x="372" y="52" class="annot-sub annot-wide">loads the whole table — out of memory past 400 M</text>
+              <text x="372" y="52" class="annot-sub annot-wide">loads the whole table, out of memory past 400 M</text>
               <text x="372" y="56" class="annot-sub annot-narrow">out of memory past 400 M</text>
-              <text x="716" y="220" text-anchor="end" class="annot-strm">polars — streams, 0.29 to 0.40 GB</text>
+              <text x="716" y="220" text-anchor="end" class="annot-strm">polars streams, 0.29 to 0.40 GB</text>
             </g>
           </svg>
         </figure>
 
         <p class="entry-links">
           <a href="slides/optimization.html">open the deck</a>
+          <span aria-hidden="true">/</span>
+          <a href="slides/">all slides</a>
         </p>
       </article>
     </div>
@@ -189,7 +193,7 @@
     <h2>Upstream</h2>
     <div class="entries">
       <article class="entry">
-        <p class="entry-intro">Fixes and reports accepted into the tools this work depends on.</p>
+        <p class="entry-intro">Fixes and reports accepted into the tools this work depends on</p>
         <ul class="upstream">
           <li>
             <a href="https://github.com/pola-rs/polars/issues/27860">polars #27860</a>
@@ -197,7 +201,7 @@
           </li>
           <li>
             <a href="https://github.com/samtools/bcftools/pulls?q=is%3Apr+author%3Atommycarstensen+is%3Amerged">samtools/bcftools</a>
-            <span>Six merged pull requests — error messages that name the accepted types and options, and documentation corrections for the two-VCF-input statistics.</span>
+            <span>Six merged pull requests: error messages that name the accepted types and options, and documentation corrections for the two-VCF-input statistics.</span>
           </li>
           <li>
             <a href="https://github.com/biopython/biopython/pulls?q=is%3Apr+author%3Atommycarstensen+is%3Amerged">biopython</a>
@@ -212,11 +216,17 @@
     </div>
   </section>
 
-  <footer>
-    <p>Copenhagen. <a href="https://github.com/tommycarstensen/tommycarstensen.github.io">Source of this page</a>.</p>
-  </footer>
-
 </main>
+
+<footer class="site-footer">
+  <div class="inner">
+    <span>Tommy Carstensen, Copenhagen</span>
+    <a href="https://scholar.google.com/citations?user=UA_ITtQAAAAJ">Google Scholar</a>
+    <a href="https://github.com/tommycarstensen">GitHub</a>
+    <a href="https://tommycarstensen.com">tommycarstensen.com</a>
+    <a href="https://github.com/tommycarstensen/tommycarstensen.github.io">Source of this page</a>
+  </div>
+</footer>
 
 <script>
 (function () {
